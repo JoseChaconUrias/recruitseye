@@ -25,6 +25,7 @@ const SignUpForm = () => {
       console.log("Authenticating...")
       const res = await createUserWithEmailAndPassword(auth, email, password);
       console.log({res})
+      sessionStorage.setItem('user', JSON.stringify(true));
       setEmail('');
       setPassword('');
       setConfirmPassword('');
@@ -89,7 +90,7 @@ const SignUpForm = () => {
             <p>Sign up with Facebook</p>
           </div>
         </button>
-        <span className=" font-bold">
+        <span className="text-sm font-bold">
           Already have an account?
           <Link className="text-blue-600 font-bold" href="/login">
             {" "}
