@@ -6,7 +6,7 @@ const SignUp = () => {
         <div>
           {/* <Image src="logo.png" alt="Recruits Eye Logo"/> */}
         </div>
-        <div className="rounded-3xl w-[424px] border border-dark-grey p-14 fixed right-48">
+        <div className="rounded-3xl w-[424px] border border-dark-grey p-14">
             <h1 className="text-center text-3xl font-bold mb-10">Recruits Eye</h1>
             <div className="flex flex-col gap-3 rounded-md items-center justify-center">
               <input className="rounded-xl p-2 bg-dark-grey w-full" type="text" placeholder="Username"/>
@@ -17,7 +17,7 @@ const SignUp = () => {
               <p className="font-bold text-lg">or</p>
               <button className=" p-2 rounded-xl bg-dark-grey w-full">Sign up with Google</button>
               <button className=" p-2 rounded-xl bg-dark-grey w-full">Sign up with Facebook</button>
-              <span className=" font-bold">Already have an account?<Link className="text-blue-600 font-bold" href="/landing-page"> Login</Link></span>
+              <span className=" font-bold">Already have an account?<Link className="text-blue-600 font-bold" href="/login"> Login</Link></span>
             </div>
         </div>
     </main>
