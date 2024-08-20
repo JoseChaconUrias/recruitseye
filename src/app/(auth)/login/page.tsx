@@ -13,7 +13,7 @@ const LogIn = () => {
               <p className="font-bold text-lg">or</p>
               <button className=" p-2 rounded-xl bg-dark-grey w-full">Log in with Google</button>
               <button className=" p-2 rounded-xl bg-dark-grey w-full">Log in with Facebook</button>
-              <span className=" font-bold">Already have an account?<Link className="text-blue-600 font-bold" href="/signup"> Login</Link></span>
+              <span className=" font-bold">Already have an account?<Link className="text-blue-600 font-bold" href="/signup"> Signup</Link></span>
             </div>
         </div>
     </main>
