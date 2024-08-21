@@ -7,15 +7,15 @@ const navLinks = [
     className: "font-bold text-xl"
   },
   {
-    href: "/",
+    href: "/about",
     label: "About",
   },
   {
-    href: "/",
+    href: "/news",
     label: "News",
   },
   {
-    href: "/",
+    href: "/blog",
     label: "Blog",
   },
 ];
@@ -32,7 +32,13 @@ const AuthNavBar = () => {
           ))}
         </ul>        
       </nav>
-
+      <nav>
+        <ul>
+          <li>
+            <Link href="/login" className="bg-dark-red rounded-full px-3 py-2">Login</Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };

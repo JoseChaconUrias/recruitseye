@@ -3,50 +3,59 @@ import SignUpForm from "./SignUpForm";
 
 const SignUp = () => {
   return (
-    <main className="flex flex-col min-h-screen p-32">
-      <section className="w-[638px] h-screen">
-        <div className="flex flex-row gap-3 mb-3">
-          <Image
-            src="/landing4.jpg"
-            alt="photo"
-            width={200}
-            height={200}
-            className="w-1/2 h-[214px] rounded-xl"
-          />
-          <Image
-            src="/landing5.jpg"
-            alt="photo"
-            width={200}
-            height={200}
-            className="w-1/2 h-[214px] rounded-xl"
-          />
-        </div>
-        <div className="flex gap-3">
-          <Image
-            src="/landing1.jpg"
-            alt="photo"
-            width={200}
-            height={200}
-            className="w-[214px] h-[334px] rounded-xl"
-          />
-          <div>
+    <main className="flex flex-col px-32">
+      <section className="flex flex-row justify-between items-center min-h-screen">
+        <div className="w-[638px]">
+          <div className="flex flex-row gap-3 mb-3">
             <Image
-              src="/landing6.jpg"
+              src="/landing4.jpg"
               alt="photo"
               width={200}
               height={200}
-              className="w-[214px] h-[167px] rounded-xl"
+              className="w-1/2 h-[214px] rounded-xl"
             />
+            <Image
+              src="/landing5.jpg"
+              alt="photo"
+              width={200}
+              height={200}
+              className="w-1/2 h-[214px] rounded-xl"
+            />
+          </div>
+          <div className="flex gap-3">
+            <Image
+              src="/landing1.jpg"
+              alt="photo"
+              width={200}
+              height={200}
+              className="w-[214px] h-[334px] rounded-xl"
+            />
+            <div>
+              <Image
+                src="/landing6.jpg"
+                alt="photo"
+                width={200}
+                height={200}
+                className="w-[214px] h-[167px] rounded-xl"
+              />
+              <div className="w-[214px] h-[167px] flex items-center justify-center">
+                <p className="text-3xl font-bold">Create</p>
+              </div>
+            </div>
             <div className="w-[214px] h-[167px] flex items-center justify-center">
-              <p className="text-3xl font-bold">Create</p>
+              <p className="text-3xl font-bold">Explore</p>
             </div>
           </div>
-          <div className="w-[214px] h-[167px] flex items-center justify-center">
-            <p className="text-3xl font-bold">Explore</p>
-          </div>
+        </div>
+        <div className="w-1/3">
+          <p className="text-center text-3xl font-bold">
+            The difference between the impossible and the possible lies in a
+            person's determination.
+          </p>
         </div>
       </section>
-      <section className="h-screen">
+
+      <section className="flex flex-row items-center justify-between min-h-screen">
         <div className="flex flex-row gap-20 items-center">
           <Image
             src="/landing7.jpg"
@@ -61,8 +70,8 @@ const SignUp = () => {
             </p>
           </div>
         </div>
+        <SignUpForm />
       </section>
-      <SignUpForm />
     </main>
   );
 };
