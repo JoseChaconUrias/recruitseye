@@ -6,6 +6,7 @@ import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
 import { useRouter } from "next/navigation";
@@ -26,7 +27,6 @@ const SignUpForm = () => {
     }
 
     try {
-      console.log("Authenticating...");
       const result = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -58,6 +58,19 @@ const SignUpForm = () => {
       router.push("/");
     } catch (error) {
       console.error("Error during Google sign-up:", error);
+    }
+  };
+
+  const handleFacebookSignup = async () => {
+    const provider = new FacebookAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("Facebook user:", user);
+      sessionStorage.setItem("user", JSON.stringify(true));
+      router.push("/");
+    } catch (error) {
+      console.error("Error during Facebook sign-up:", error);
     }
   };
 
@@ -108,7 +121,10 @@ const SignUpForm = () => {
             <p>Sign up with Google</p>
           </div>
         </button>
-        <button className="flex items-center justify-center gap-x-10 p-2 rounded-xl bg-dark-grey w-full">
+        <button
+          className="flex items-center justify-center gap-x-10 p-2 rounded-xl bg-dark-grey w-full"
+          onClick={handleFacebookSignup}
+        >
           <div className="flex w-full items-center justify-between px-10">
             <Image src="/facebook.png" alt="logo" width={25} height={25} />
             <p>Sign up with Facebook</p>

@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  FacebookAuthProvider,
 } from "firebase/auth";
 
 const LoginForm = () => {
@@ -45,6 +46,19 @@ const LoginForm = () => {
     }
   };
 
+  const handleFacebookSignIn = async (e: React.FormEvent) => {
+    const provider = new FacebookAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("Facebook user: ", user);
+      sessionStorage.setItem("user", JSON.stringify(true));
+      router.push("/");
+    } catch (error) {
+      console.error("Error during Facebook sign-in:", error);
+    }
+  };
+
   return (
     <form
       className="rounded-3xl w-[27.5rem] border border-dark-grey p-14 bg-dark-mode"
@@ -68,7 +82,10 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button className="rounded-full bg-dark-red w-32 p-2 font-bold">
+        <button
+          className="rounded-full bg-dark-red w-32 p-2 font-bold"
+          type="submit"
+        >
           Log In
         </button>
         <p className="font-bold text-lg">or</p>
@@ -83,7 +100,7 @@ const LoginForm = () => {
         </button>
         <button
           className="flex items-center justify-center gap-x-10 p-2 rounded-xl bg-dark-grey w-full"
-          type="submit"
+          onClick={handleFacebookSignIn}
         >
           <div className="flex w-full items-center justify-between px-10">
             <Image src="/facebook.png" alt="logo" width={25} height={25} />
