@@ -6,7 +6,7 @@ import { auth } from "@/firebase/config";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-const LogInForm = () => {
+const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -81,4 +81,4 @@ const LogInForm = () => {
   );
 };
 
-export default LogInForm;
+export default LoginForm;

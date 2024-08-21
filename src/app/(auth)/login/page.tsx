@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import LogInForm from "./LogInForm";
+import LoginForm from "./LoginForm";
 
-const LogIn = () => {
+const Login = () => {
   return (
     <main className="mx-auto lg:mx-0 flex justify-center items-center min-h-screen">
-      <LogInForm />
+      <LoginForm />
     </main>
   );
 };
 
-export default LogIn;
+export default Login;
