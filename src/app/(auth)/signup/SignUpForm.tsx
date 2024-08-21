@@ -1,9 +1,13 @@
-"use client"
+"use client";
 import { auth } from "@/firebase/config";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { useRouter } from "next/navigation";
 
 const SignUpForm = () => {
@@ -22,21 +26,38 @@ const SignUpForm = () => {
     }
 
     try {
-      console.log("Authenticating...")
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-      console.log({res})
-      sessionStorage.setItem('user', JSON.stringify(true));
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
+      console.log("Authenticating...");
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log({ result });
+      sessionStorage.setItem("user", JSON.stringify(true));
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
       router.push("/");
-    } catch(e) {
-      if (e instanceof Error) {
-        alert(`Error: ${e.message}`);
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(`Error: ${error.message}`);
       } else {
-        alert('An unknown error occurred');
+        alert("An unknown error occurred");
       }
-      console.error(e);
+      console.error(error);
+    }
+  };
+
+  const handleGoogleSignUp = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("Google user:", user);
+      sessionStorage.setItem("user", JSON.stringify(true));
+      router.push("/");
+    } catch (error) {
+      console.error("Error during Google sign-up:", error);
     }
   };
 
@@ -78,7 +99,10 @@ const SignUpForm = () => {
           Sign Up
         </button>
         <p className="font-bold text-lg">or</p>
-        <button className="flex items-center justify-center gap-x-10 p-2 rounded-xl bg-dark-grey w-full">
+        <button
+          className="flex items-center justify-center gap-x-10 p-2 rounded-xl bg-dark-grey w-full"
+          onClick={handleGoogleSignUp}
+        >
           <div className="flex w-full items-center justify-between px-10">
             <Image src="/google.png" alt="logo" width={25} height={25} />
             <p>Sign up with Google</p>
