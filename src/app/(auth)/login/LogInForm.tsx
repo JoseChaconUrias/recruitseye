@@ -4,26 +4,44 @@ import Link from "next/link";
 import { useState } from "react";
 import { auth } from "@/firebase/config";
 import { useRouter } from "next/navigation";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const router = useRouter()
+  const router = useRouter();
 
   const handleLogIn = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      console.log({res});
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      console.log({ result });
       sessionStorage.setItem("user", JSON.stringify(true));
       setEmail("");
       setPassword("");
       router.push("/");
-    } catch(e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleGoogleSignIn = async (e: React.FormEvent) => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("Google user:", user);
+      sessionStorage.setItem("user", JSON.stringify(true));
+      router.push("/");
+    } catch (error) {
+      console.error("Error during Google sign-in:", error);
     }
   };
 
@@ -54,10 +72,13 @@ const LoginForm = () => {
           Log In
         </button>
         <p className="font-bold text-lg">or</p>
-        <button className="flex items-center justify-center gap-x-10 p-2 rounded-xl bg-dark-grey w-full">
+        <button
+          className="flex items-center justify-center gap-x-10 p-2 rounded-xl bg-dark-grey w-full"
+          onClick={handleGoogleSignIn}
+        >
           <div className="flex w-full items-center justify-between px-10">
             <Image src="/google.png" alt="logo" width={25} height={25} />
-            <p>Sign up with Google</p>
+            <p>Login with Google</p>
           </div>
         </button>
         <button
@@ -66,7 +87,7 @@ const LoginForm = () => {
         >
           <div className="flex w-full items-center justify-between px-10">
             <Image src="/facebook.png" alt="logo" width={25} height={25} />
-            <p>Sign up with Facebook</p>
+            <p>Login with Facebook</p>
           </div>
         </button>
         <span className="text-sm font-bold">
