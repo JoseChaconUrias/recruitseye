@@ -4,7 +4,7 @@ import LogInForm from "./LogInForm";
 
 const LogIn = () => {
   return (
-    <main className="flex flex-row justify-center items-center min-h-screen p-32">
+    <main className="mx-auto lg:mx-0 flex justify-center items-center min-h-screen">
       <LogInForm />
     </main>
   );
