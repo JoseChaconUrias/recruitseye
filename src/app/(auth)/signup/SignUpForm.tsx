@@ -42,7 +42,7 @@ const SignUpForm = () => {
 
   return (
     <form
-      className="rounded-3xl w-[27.5rem] border border-dark-grey p-14 fixed right-48 bg-dark-mode"
+      className="rounded-3xl w-[27.5rem] border border-dark-grey p-14 bg-dark-mode"
       onSubmit={handleSignUp}
     >
       <h1 className="text-center text-3xl font-bold mb-10">Recruits Eye</h1>
