@@ -1,7 +1,7 @@
 import Image from "next/image";
-import SignUpForm from "./SignUpForm";
+import SignupForm from "./SignupForm";
 
-const SignUp = () => {
+const Signup = () => {
   return (
     <main className="flex flex-col lg:px-2 xl:px-32 justify-between">
       <section className="hidden lg:flex flex-row justify-between items-center min-h-screen">
@@ -71,12 +71,11 @@ const SignUp = () => {
           </div>
         </div>
         <div className="mx-auto lg:mx-0">
-          <SignUpForm />          
+          <SignupForm />
         </div>
-
       </section>
     </main>
   );
 };
 
-export default SignUp;
+export default Signup;
