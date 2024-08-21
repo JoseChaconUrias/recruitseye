@@ -1,6 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
-import LoginForm from "./LoginForm";
+import LoginForm from "./LogInForm";
 
 const Login = () => {
   return (
